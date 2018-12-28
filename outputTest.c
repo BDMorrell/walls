@@ -32,7 +32,7 @@ int main()
   char* hLine = generatePatternString(mazeWidth*2-1, "+-", 2); // 2 excludes '\0'
   char* vLine = generatePatternString(mazeWidth*2-1, "| ", 2); // 2 excludes '\0'
   int y;
-  for (y = 0; y < mazeHeight*2; y++) {
+  for (y = 0; y < mazeHeight; y++) {
     printf("%s\n%s\n", hLine, vLine);
   }
   printf("%s\n", hLine);
