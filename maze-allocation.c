@@ -1,7 +1,8 @@
 #include "maze-defs.h"
 #include <stdlib.h>
 
-maze *allocateMaze(size2d requestedSize) {
+maze *allocateMaze(size2d requestedSize)
+{
   maze *newMaze = malloc(sizeof(maze));
   newMaze->size = requestedSize;
   newMaze->num_cells = computeArea(&(newMaze->size));
@@ -12,10 +13,12 @@ maze *allocateMaze(size2d requestedSize) {
   //TODO: link walls to cells
 }
 
-int calculateWallCount(size2d size) {
+int calculateWallCount(size2d size)
+{
   return ((size.w)-1)*size.h + ((size.h)-1)*size.w;
 }
 
-void dealocateMaze(maze *m) {
+void dealocateMaze(maze *m)
+{
   //TODO: finish this
 }
