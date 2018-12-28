@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+// Low level fucntion, and hasn't been tested with edge cases.
 void *mempattern(void * destination, size_t destinationSize, void * source, size_t sourceSize)
 {
-  char * i = destination;
-  char * j = source;
+  char *i = destination;
+  char *j = source;
   while ((void *)i < destination + destinationSize) {
     *(i++) = *(j++);
     if ((void *)j >= source + sourceSize) {
@@ -15,23 +15,26 @@ void *mempattern(void * destination, size_t destinationSize, void * source, size
   return destination;
 }
 
-// char *generateLine(int size) // TODO: update this
-// {
-//   char *ret = malloc(width * 2);
-//   int i;
-//   for (i = 0; i < width*2; i++) {
-//
-//   }
-// }
+char *generatePatternString(size_t requestedSize, char *source, size_t sourceSize)
+{
+  char *ret = malloc(requestedSize + 1); // for '\0'
+  if (ret != NULL) {
+    mempattern(ret, requestedSize, source, sourceSize);
+    ret[requestedSize] = '\0';
+  }
+  return ret;
+}
 
 int main()
 {
-  // int mazeWidth = 9;
-  // int mazeHeight = 4;
-  // char* hLine = generateLine(mazeWidth); // TODO: update this
-  char str[] = "hello, this is a test of the system!";
-  mempattern(str, 5, "ab", 2); // I know these are technically wrong
-  printf("%s\n", str);
-  //expected: "ababa, this is a test of the system!"
+  int mazeWidth = 9;
+  int mazeHeight = 4;
+  char* hLine = generatePatternString(mazeWidth*2-1, "+-", 2); // 2 excludes '\0'
+  char* vLine = generatePatternString(mazeWidth*2-1, "| ", 2); // 2 excludes '\0'
+  int y;
+  for (y = 0; y < mazeHeight*2; y++) {
+    printf("%s\n%s\n", hLine, vLine);
+  }
+  printf("%s\n", hLine);
   return 0;
 }
