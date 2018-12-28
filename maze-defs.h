@@ -39,6 +39,7 @@ void clearMazeCells(maze *m);
 //maze-allocation.c
 maze *allocateMaze(size2d requestedSize);
 void dealocateMaze(maze *m);
+int calculateWallCount(size2d size);
 
 //TODO: initalize walls
 //TODO: draw maze
