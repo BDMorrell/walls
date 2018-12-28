@@ -25,5 +25,6 @@ bool try_destroy(wall *w)
 
 void clearMazeCells(maze *m)
 {
+  // maybe this would be better ot just loop?
   memset(m->cells, 0, (sizeof(cell) * m->num_cells));
 }
