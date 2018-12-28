@@ -1,3 +1,5 @@
+#ifndef MAZE_DEFS
+#define MAZE_DEFS
 #include <stddef.h>
 #include <stdbool.h>
 
@@ -44,3 +46,4 @@ int calculateWallCount(size2d size);
 //TODO: initalize walls
 //TODO: draw maze
 //TODO: make and draw maze
+#endif
