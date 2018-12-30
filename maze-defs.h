@@ -50,4 +50,5 @@ void initWall(wall &w, cell *a, cell *b);
 int getOffset(size2d s, pos2d p);
 cell *getCell(maze *m, pos2d position);
 
+//TODO: get wall destruction priorites in check
 //TODO: draw maze
