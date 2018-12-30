@@ -51,3 +51,27 @@ int randomCompare(const void *a, const void *b)
 {
   return rand() % 2;
 }
+
+// Low level fucntion, and hasn't been tested with edge cases.
+void *mempattern(void * destination, size_t destinationSize, void * source, size_t sourceSize)
+{
+  char *i = destination;
+  char *j = source;
+  while ((void *)i < destination + destinationSize) {
+    *(i++) = *(j++);
+    if ((void *)j >= source + sourceSize) {
+      j = source;
+    }
+  }
+  return destination;
+}
+
+char *generatePatternString(size_t requestedSize, char *source, size_t sourceSize)
+{
+  char *ret = malloc(requestedSize + 1); // for '\0'
+  if (ret != NULL) {
+    mempattern(ret, requestedSize, source, sourceSize);
+    ret[requestedSize] = '\0';
+  }
+  return ret;
+}

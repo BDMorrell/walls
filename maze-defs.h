@@ -43,6 +43,8 @@ bool try_destroy(wall *w); // returnes if a wall was destroied
 void clearMazeCells(maze *m);
 void completeMaze(maze *m);
 int randomCompare(const void *a, const void *b);
+void *mempattern(void * destination, size_t destinationSize, void * source, size_t sourceSize);
+char *generatePatternString(size_t requestedSize, char *source, size_t sourceSize);
 
 //maze-allocation.c
 maze *allocateMaze(size2d requestedSize);
@@ -53,6 +55,7 @@ void initWall(wall &w, cell *a, cell *b);
 int getOffset(size2d s, pos2d p);
 cell *getCell(maze *m, pos2d position);
 
+//TODO: add edge conditions
 //TODO: get wall destruction priorites in check
 //TODO: draw maze
 #define MAZE_DEFS
