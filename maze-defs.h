@@ -1,6 +1,7 @@
 #ifndef MAZE_DEFS
 #include <stddef.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 typedef struct size2d {
   size_t w, h;
@@ -28,15 +29,14 @@ typedef struct maze {
   struct wall *walls;
 } maze;
 
-inline size_t computeArea(size2d *point)
-{
-  return point->w * point->h;
-}
-
 // Assumptions:
 // We're going to be drawing a rectangular grid maze.
 // It's going to be drawn in quadrant 4; left to right then top to bottom.
 
+static inline size_t computeArea(size2d *point)
+{
+  return point->w * point->h;
+}
 //maze-operations.c
 cell *getParent(cell *c);
 bool try_destroy(wall *w); // returnes if a wall was destroied
@@ -49,12 +49,12 @@ char *generatePatternString(size_t requestedSize, char *source, size_t sourceSiz
 
 //maze-allocation.c
 maze *allocateMaze(size2d requestedSize);
-void dealocateMaze(maze *m);
+void deallocateMaze(maze *m);
 int calculateWallCount(size2d size);
 void initializeWalls(maze *m);
-void initWall(wall &w, cell *a, cell *b);
-int getOffset(size2d s, pos2d p);
-cell *getCell(maze *m, pos2d position);
+void initWall(wall *w, cell *a, cell *b);
+int getOffset(size2d s, int x, int y);
+cell *getCell(maze *m, int x, int y);
 
 //TODO: add edge conditions
 //TODO: get wall destruction priorites in check

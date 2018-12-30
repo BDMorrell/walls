@@ -12,6 +12,8 @@ maze *allocateMaze(size2d requestedSize)
   newMaze->walls = malloc(sizeof(wall) * newMaze->num_walls);
   // TODO: split up this function?
   initializeWalls(newMaze);
+
+  return newMaze;
 }
 
 int calculateWallCount(size2d size)
@@ -38,31 +40,31 @@ void initializeWalls(maze *m)
   }
 }
 
-void initWall(wall &w, cell *a, cell *b)
+void initWall(wall *w, cell *a, cell *b)
 {
-  w.active = true;
-  w.sides[0] = a;
-  w.sides[1] = b;
+  w->active = true;
+  w->sides[0] = *a;
+  w->sides[1] = *b;
 }
 
-int getOffset(size2d s, pos2d p)
+int getOffset(size2d s, int x, int y)
 {
-  if (p.x >= s.w || p.x < 0 || p.y >= s.h || p.y < 0) {
+  if (x >= s.w || x < 0 || y >= s.h || y < 0) {
     return -1; //error
   } // implicit else
-  return ((p.y * s.w) + p.x);
+  return ((y * s.w) + x);
 }
 
-cell *getCell(maze *m, pos2d position)
+cell *getCell(maze *m, int x, int y)
 {
-  int offset = getOffset(m->size, position);
+  int offset = getOffset(m->size, x, y);
   if (offset == -1) {
-    return NULL:
+    return NULL;
   } // implicit else
-  return m->cells[offset];
+  return m->cells + offset; // &(m->cells[offset])
 }
 
-void dealocateMaze(maze *m)
+void deallocateMaze(maze *m)
 {
   free(m->walls);
   free(m->cells);
