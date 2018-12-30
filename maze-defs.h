@@ -42,6 +42,7 @@ cell *getParent(cell *c);
 bool try_destroy(wall *w); // returnes if a wall was destroied
 void clearMazeCells(maze *m);
 void completeMaze(maze *m);
+void printMaze(maze *m, FILE *stream);
 int randomCompare(const void *a, const void *b);
 void *mempattern(void * destination, size_t destinationSize, void * source, size_t sourceSize);
 char *generatePatternString(size_t requestedSize, char *source, size_t sourceSize);
