@@ -1,3 +1,4 @@
+#ifndef MAZE_DEFS
 #include <stddef.h>
 #include <stdbool.h>
 
@@ -54,3 +55,5 @@ cell *getCell(maze *m, pos2d position);
 
 //TODO: get wall destruction priorites in check
 //TODO: draw maze
+#define MAZE_DEFS
+#endif
