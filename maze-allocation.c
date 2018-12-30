@@ -70,8 +70,3 @@ void deallocateMaze(maze *m)
   free(m->cells);
   free(m);
 }
-
-size_t computeArea(size2d *point)
-{
-  return point->w * point->h;
-}
