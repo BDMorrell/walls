@@ -51,4 +51,3 @@ int getOffset(size2d s, pos2d p);
 cell *getCell(maze *m, pos2d position);
 
 //TODO: draw maze
-//TODO: make and draw maze

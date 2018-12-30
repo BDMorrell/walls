@@ -64,5 +64,7 @@ cell *getCell(maze *m, pos2d position)
 
 void dealocateMaze(maze *m)
 {
-  //TODO: finish this
+  free(m->walls);
+  free(m->cells);
+  free(m);
 }
