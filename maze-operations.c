@@ -1,6 +1,7 @@
 #include "maze-defs.h"
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 cell *getParent(cell *c)
 {
@@ -45,6 +46,42 @@ void completeMaze(maze *m)
   }
 
   free(wallsToTest);
+}
+
+void printMaze(maze *m, FILE *stream)
+{
+  const char[] endCapPattern = "+-";
+  char *endCap = generatePatternString(m->size.w * 2 - 1, endCapPattern, strlen(endCapPattern));
+  fputs(endCap, stream);
+  int row, col;
+  wall *it = m->walls; // iterator
+  for (row = 0; row < m->size.h; row++) {
+    // horizontal walls
+    putc('|', stream);
+    for (col = 0; col < m-> size.w-1; col++) {
+      putc(' ', stream);
+      if (*(it++).active == true) {
+        putc('|', stream);
+      } else {
+        putc(' ', stream);
+      }
+    }
+    fputs(" |");
+    // vertical walls
+    if (row != m->size.h - 1) {
+      for (col = 0; col < size.w; col++) {
+        putc("+", stream);
+        if (*(it++).active == true) {
+          putc('-', stream);
+        } else {
+          putc(' ', stream);
+        }
+      }
+      putc("+", stream);
+    }
+  }
+  fputs(endCap, stream);
+  free(endCap);
 }
 
 int randomCompare(const void *a, const void *b)
