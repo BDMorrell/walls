@@ -1,5 +1,6 @@
 #include "maze-defs.h"
 #include <string.h>
+#include <stdlib.h>
 
 cell *getParent(cell *c)
 {
@@ -27,4 +28,26 @@ void clearMazeCells(maze *m)
 {
   // maybe this would be better ot just loop?
   memset(m->cells, 0, (sizeof(cell) * m->num_cells));
+}
+
+void completeMaze(maze *m)
+{
+  //TODO: make biasing mazes a thing
+  wall **wallsToTest = malloc(sizeof(wall *) * m->num_walls);
+  int i;
+  for (i = 0; i < m->num_walls; i++) {
+    wallsToTest[i] = &(m->walls[i]);
+  }
+  // There may be better, *provably* random algorithms to shuffle
+  qsort(wallsToTest, m->num_walls, sizeof(wall *), randomCompare);
+  for (i = 0; i < m->num_walls; i++) {
+    try_destroy(wallsToTest[i]);
+  }
+
+  free(wallsToTest);
+}
+
+int randomCompare(const void *a, const void *b)
+{
+  return rand() % 2;
 }

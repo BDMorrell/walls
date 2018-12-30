@@ -16,7 +16,7 @@ typedef struct cell {
 
 typedef struct wall {
   struct cell sides[2];
-  struct pos2d pos; // This may not be needed
+  struct pos2d pos; // TODO: This may not be needed
   bool active;
 } wall;
 
@@ -40,6 +40,8 @@ inline size_t computeArea(size2d *point)
 cell *getParent(cell *c);
 bool try_destroy(wall *w); // returnes if a wall was destroied
 void clearMazeCells(maze *m);
+void completeMaze(maze *m);
+int randomCompare(const void *a, const void *b);
 
 //maze-allocation.c
 maze *allocateMaze(size2d requestedSize);
