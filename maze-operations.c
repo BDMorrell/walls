@@ -50,8 +50,8 @@ void completeMaze(maze *m)
 
 void printMaze(maze *m, FILE *stream)
 {
-  const char[] endCapPattern = "+-";
-  char *endCap = generatePatternString(m->size.w * 2 - 1, endCapPattern, strlen(endCapPattern));
+  const char endCapPattern[] = "+-";
+  char *endCap = generatePatternString(m->size.w * 2 - 1, (char *)endCapPattern, strlen(endCapPattern));
   fputs(endCap, stream);
   int row, col;
   wall *it = m->walls; // iterator
@@ -60,24 +60,24 @@ void printMaze(maze *m, FILE *stream)
     putc('|', stream);
     for (col = 0; col < m-> size.w-1; col++) {
       putc(' ', stream);
-      if (*(it++).active == true) {
+      if ((it++)->active == true) {
         putc('|', stream);
       } else {
         putc(' ', stream);
       }
     }
-    fputs(" |");
+    fputs(" |", stream);
     // vertical walls
     if (row != m->size.h - 1) {
-      for (col = 0; col < size.w; col++) {
-        putc("+", stream);
-        if (*(it++).active == true) {
+      for (col = 0; col < m->size.w; col++) {
+        putc('+', stream);
+        if ((it++)->active == true) {
           putc('-', stream);
         } else {
           putc(' ', stream);
         }
       }
-      putc("+", stream);
+      putc('+', stream);
     }
   }
   fputs(endCap, stream);
