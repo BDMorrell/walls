@@ -10,7 +10,7 @@ maze *allocateMaze(size2d requestedSize)
   clearMazeCells(newMaze);
   newMaze->num_walls = calculateWallCount(newMaze->size);
   newMaze->walls = malloc(sizeof(wall) * newMaze->num_walls);
-
+  // TODO: split up this function?
   initializeWalls(newMaze);
 }
 
