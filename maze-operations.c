@@ -13,7 +13,7 @@ cell *getParent(cell *c)
 
 bool try_destroy(wall *w)
 {
-  if (w->active == false) { // if the wall is already destroied
+  if (w->active == false) { // if the wall is already destroyed
     return false;
   }
   cell *first_group = getParent(&(w->sides[0]));
