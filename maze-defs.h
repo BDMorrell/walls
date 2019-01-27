@@ -7,18 +7,13 @@ typedef struct size2d {
   size_t w, h;
 } size2d;
 
-// TODO: change to int2d
-typedef struct pos2d {
-  int x, y;
-} pos2d;
-
 typedef struct cell {
   struct cell *parent;
 } cell;
 
 typedef struct wall {
   struct cell *sides[2];
-  struct pos2d pos; // TODO: This may not be needed
+  int sequence;
   bool active;
 } wall;
 
@@ -52,7 +47,7 @@ maze *allocateMaze(size2d requestedSize);
 void deallocateMaze(maze *m);
 int calculateWallCount(size2d size);
 void initializeWalls(maze *m);
-void initWall(wall *w, cell *a, cell *b);
+void initWall(wall *w, cell *a, cell *b, int sequenceNumber);
 int getOffset(size2d s, int x, int y);
 cell *getCell(maze *m, int x, int y);
 

@@ -25,26 +25,28 @@ void initializeWalls(maze *m)
 {
   wall *it = m->walls; // iterator
   int row;
+  int sequencer = 0;
   for (row = 0; row < m->size.h; row++) {
     int col;
     // link right
     for (col = 0; col < m->size.w-1; col++) { // right-most doesn't have a right
-      initWall(it++, getCell(m, col, row), getCell(m, col + 1, row));
+      initWall(it++, getCell(m, col, row), getCell(m, col + 1, row), sequencer++);
     }
     // link down
     if (row != m->size.h - 1) { // if we aren't in the bottom row
       for (col = 0; col < m->size.w; col++) {
-        initWall(it++, getCell(m, col, row), getCell(m, col, row + 1));
+        initWall(it++, getCell(m, col, row), getCell(m, col, row + 1), sequencer++);
       }
     }
   }
 }
 
-void initWall(wall *w, cell *a, cell *b)
+void initWall(wall *w, cell *a, cell *b, int sequenceNumber)
 {
   w->active = true;
   w->sides[0] = a;
   w->sides[1] = b;
+  w->sequence = sequenceNumber;
 }
 
 int getOffset(size2d s, int x, int y)
