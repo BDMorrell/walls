@@ -17,7 +17,8 @@ bool try_destroy(wall *w)
     return false;
   }
   cell *first_group = getParent(&(w->sides[0]));
-  if (first_group != getParent(&(w->sides[1]))) { // if different group
+  cell *second_group = getParent(&(w->sides[1]));
+  if (first_group != second_group) { // if different group
     w->active = false;
     first_group->parent = w->sides[0].parent;
     return true;
@@ -34,7 +35,7 @@ void clearMazeCells(maze *m)
 void completeMaze(maze *m)
 {
   //TODO: make biasing mazes a thing
-  wall **wallsToTest = malloc(sizeof(wall *) * m->num_walls);
+  wall **wallsToTest = calloc(m->num_walls, sizeof(wall *));
   int i;
   for (i = 0; i < m->num_walls; i++) {
     wallsToTest[i] = &(m->walls[i]);
