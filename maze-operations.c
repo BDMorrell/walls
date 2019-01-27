@@ -16,11 +16,11 @@ bool try_destroy(wall *w)
   if (w->active == false) { // if the wall is already destroyed
     return false;
   }
-  cell *first_group = getParent(&(w->sides[0]));
-  cell *second_group = getParent(&(w->sides[1]));
+  cell *first_group = getParent((w->sides[0]));
+  cell *second_group = getParent((w->sides[1]));
   if (first_group != second_group) { // if different group
     w->active = false;
-    first_group->parent = w->sides[0].parent;
+    first_group->parent = second_group;
     return true;
   }
   return false;

@@ -17,7 +17,7 @@ typedef struct cell {
 } cell;
 
 typedef struct wall {
-  struct cell sides[2];
+  struct cell *sides[2];
   struct pos2d pos; // TODO: This may not be needed
   bool active;
 } wall;

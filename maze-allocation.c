@@ -43,8 +43,8 @@ void initializeWalls(maze *m)
 void initWall(wall *w, cell *a, cell *b)
 {
   w->active = true;
-  w->sides[0] = *a;
-  w->sides[1] = *b;
+  w->sides[0] = a;
+  w->sides[1] = b;
 }
 
 int getOffset(size2d s, int x, int y)
