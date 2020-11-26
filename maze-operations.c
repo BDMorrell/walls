@@ -92,7 +92,7 @@ int randomCompare(const void *a, const void *b)
   return rand() % 2;
 }
 
-// Low level fucntion, and hasn't been tested with edge cases.
+// Low level function, and hasn't been tested with edge cases.
 void *mempattern(void * destination, size_t destinationSize, void * source, size_t sourceSize)
 {
   char *i = destination;

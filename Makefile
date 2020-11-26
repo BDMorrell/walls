@@ -1,14 +1,16 @@
-CC = gcc
-CFLAGS = -Os
-
-HEADERS = maze-defs.h
 OBJS = maze-allocation.o maze-operations.o main.o
+DEPS = $(OBJS:.o=.d)
 
-%.o : %.c %(HEADERS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+vpath %.c $(dir $(MAKEFILE_LIST))
+
+CFLAGS = -Os
+CFLAGS += -MMD -MP
+
 all : walls
 walls : $(OBJS)
 	$(CC) -o $@ $^ $(CFLAGS)
 .PHONY : clean
 clean :
-	-rm walls $(OBJS)
+	$(RM) walls $(OBJS) $(DEPS)
+
+-include $(DEPS)

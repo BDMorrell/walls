@@ -1,6 +1,10 @@
 #include "maze-defs.h"
 #include <stdlib.h>
 
+int calculateWallCount(size2d size);
+void initializeWalls(maze *m);
+void initWall(wall *w, cell *a, cell *b, int sequenceNumber);
+
 maze *allocateMaze(size2d requestedSize)
 {
   maze *newMaze = malloc(sizeof(maze));
